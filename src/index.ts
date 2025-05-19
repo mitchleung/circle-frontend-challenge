@@ -1,23 +1,15 @@
-import express from 'express'
-import booksRouter from './router/booksRouter'
-import { errorHandler } from './middleware/errorHandler'
-import ErrorHandler from './utils/ErrorHandler'
-import cors from 'cors'
+import app from './app'
 
-const app = express()
-const port = 8000
+const PORT = process.env.PORT || 8000
 
-app.use(express.json())
-app.use(cors())
-
-app.use('/books', booksRouter)
-
-app.use((_req, _res, next) => {
-    next(new ErrorHandler('Route not found', 404))
+app.listen(PORT, () => {
+    console.log(`Local server running on port ${PORT}`)
 })
 
-app.use(errorHandler)
+process.on('unhandledRejection', (reason) => {
+    console.error('Unhandled Rejection', reason)
+})
 
-app.listen(port, () => {
-    console.log(`🚀 Example app listening at http://localhost:${port}`)
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception', err)
 })
