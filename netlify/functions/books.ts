@@ -6,6 +6,6 @@ import booksRouter from '../../src/router/booksRouter';
 
 const app = express();
 app.use(express.json());
-app.use('/', booksRouter); // match Netlify redirect
+app.use('/books', booksRouter); // match Netlify redirect
 
 export const handler = serverless(app);
