@@ -1,18 +1,22 @@
-const express = require('express')
-import app from '../app'
+import express from 'express'
+import { errorHandler } from '../middleware/errorHandler'
+import booksRouter from '../router/booksRouter'
+import ErrorHandler from '../utils/ErrorHandler'
+import cors from 'cors'
 
-const PORT = process.env.PORT || 8000
+const app = express()
 
-app.listen(PORT, () => {
-    console.log(`Local server running on port ${PORT}`)
+app.use(express.json())
+app.use(cors())
+
+app.use('/books', booksRouter)
+
+app.use((_req, _res, next) => {
+    next(new ErrorHandler('Route not found', 404))
 })
 
-process.on('unhandledRejection', (reason) => {
-    console.error('Unhandled Rejection', reason)
-})
+app.use(errorHandler)
 
-process.on('uncaughtException', (err) => {
-    console.error('Uncaught Exception', err)
-})
+app.listen(3000, () => console.log('Server ready on port 3000.'))
 
 module.exports = app
