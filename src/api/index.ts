@@ -4,18 +4,12 @@ import booksRouter from '../router/booksRouter'
 import ErrorHandler from '../utils/ErrorHandler'
 import cors from 'cors'
 
-const app = express()
+const PORT = process.env.PORT || 8000
 
+const app = express()
 app.use(express.json())
 app.use(cors())
-
-app.use('/books', booksRouter)
-
-app.use((_req, _res, next) => {
-    next(new ErrorHandler('Route not found', 404))
-})
-
-app.use(errorHandler)
+app.get('/', (req, res) => res.send('Express on Vercel'))
 
 app.listen(3000, () => console.log('Server ready on port 3000.'))
 
