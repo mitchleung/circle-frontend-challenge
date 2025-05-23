@@ -3,8 +3,6 @@
   node_bundler = "esbuild"
 [[redirects]]
   force = true
-  from = "/books/*"
+  from = "/*"
   status = 200
   to = "/.netlify/functions/books/:splat"
-[[node]]
-  env = ["NODE_ENV=production"]
