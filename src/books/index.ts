@@ -1,17 +1,19 @@
-import app from "../app"
+require('dotenv').config()
+
+import app from '../app'
 
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
-  console.log(`Local server running on port ${PORT}`)
+    console.log(`Local server running on port ${PORT}`)
 })
 
 process.on('unhandledRejection', (reason) => {
-  console.error('Unhandled Rejection', reason)
+    console.error('Unhandled Rejection', reason)
 })
 
 process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception', err)
+    console.error('Uncaught Exception', err)
 })
 
 module.exports = app
