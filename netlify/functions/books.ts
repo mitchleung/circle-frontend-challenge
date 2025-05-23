@@ -9,10 +9,5 @@ import app from '../../src';
 // app.use(express.json());
 // app.use('/books', booksRouter); // match Netlify redirect
 
-const PORT = process.env.PORT || 8000
-
-app.listen(PORT, () => {
-    console.log(`Local server running on port ${PORT}`)
-})
 
 export const handler = serverless(app);
