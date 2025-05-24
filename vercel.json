@@ -1,9 +1,20 @@
 {
   "version": 2,
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/books"
+      "src": "index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+
+  "routes": [
+    {
+      "src": "/books/(.*)",
+      "dest": "index.ts"
+    },
+    {
+      "handle": "filesystem"
     }
   ]
+
 }
