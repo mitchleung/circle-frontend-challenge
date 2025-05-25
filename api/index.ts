@@ -1,6 +1,4 @@
-require('dotenv').config()
-
-import app from '../app'
+import app from '../src/app'
 
 const PORT = process.env.PORT || 3000
 
@@ -16,4 +14,4 @@ process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception', err)
 })
 
-module.exports = app
+export default app
